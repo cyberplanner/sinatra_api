@@ -1,3 +1,12 @@
+require 'sinatra'
+require 'json'
+
+get '/:number' do
+  content_type :json
+  number = params[:number].to_i
+  { number: number, factors: number.factors, odd: number.odd?, even: number.even?, prime: number.prime? }.to_json
+end
+
 class Integer
   def factors
     square_root = self**0.5
@@ -8,5 +17,3 @@ class Integer
     self.factors.size  == 2 ? true : false
   end
 end
-
-  
